@@ -14,6 +14,20 @@ function startTime() {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
    }
-//WEATHER
-
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+   function search() {
+    const api_key = "cf8e9cff4f9558b72b88f49f9e9e0add";
+    let input_value = document.getElementById("location-input").value;
+    try {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${input_value}&appid=${api_key}&units=metric`
+      )
+        .then((response) => response.json())
+        .then((data) => display(data));
+  
+      document.getElementById("location-input").value = "";
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  
+  
